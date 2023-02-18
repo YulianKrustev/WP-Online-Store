@@ -836,7 +836,7 @@ class Cartflows_Ca_Settings {
 	public function wcf_ca_delete_coupons_callback( $args ) {
 		?>
 
-		<input type="button" class="button-secondary" id="wcf_ca_delete_coupons" value="<?php esc_html_e( 'Delete', 'woo-cart-abandonment-recovery' ); ?>" >
+		<input type="button" class="button-secondary" id="wcf_ca_delete_coupons" value="<?php esc_attr_e( 'Delete', 'woo-cart-abandonment-recovery' ); ?>" >
 		<span class="spinner wcf-ca-spinner"></span>
 		<span class="wcf-ca-response-msg"></span>
 		<?php

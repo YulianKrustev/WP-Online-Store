@@ -70,7 +70,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 											<div style="font-family: sans-serif">
 												<div style="font-size: 14px; mso-line-height-alt: 16.8px; color: #393d47; line-height: 1.2; font-family: Arial, Helvetica Neue, Helvetica, sans-serif;">
 													<p style="margin: 0; font-size: 14px; text-align: center;">
-														<span style="font-size:14px;"><?php echo esc_attr( $from_date ) . ' - ' . esc_attr( $to_date ); ?></span>
+														<span style="font-size:14px;"><?php echo esc_html( $from_date . ' - ' . $to_date ); ?></span>
 													</p>
 													<p style="margin: 0; font-size: 14px; text-align: center;">
 														<span style="font-size:12px;">

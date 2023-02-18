@@ -1,3 +1,7 @@
+Version 1.2.22 - Wednesday, 15th February 2023
+- New: Added filter `woo_ca_recovery_email_unsubscribe_notice` to change the unsubscribed notice text.
+- Fix: WCAR shortcodes of email editor not showing in some cases.
+
 Version 1.2.21 - Thursday, 15th December 2022
 - Fix: Fixed deprecation notices for PHP 8.1.
 - Fix: Some strings were not translatable.

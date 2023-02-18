@@ -3,7 +3,7 @@ node_modules
 vendor
 !.*.js
 Gruntfile.js
-assets/min-js/
+admin/assets/min-js/
 *.json
 lib/
 *-rtl*

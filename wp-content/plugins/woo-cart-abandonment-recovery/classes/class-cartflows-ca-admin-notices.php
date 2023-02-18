@@ -54,6 +54,8 @@ class Cartflows_Ca_Admin_Notices {
 	public function show_admin_notices() {
 
 		$image_path = esc_url( CARTFLOWS_CA_URL . 'admin/assets/images/wcar-icon.png' );
+		$review_url = apply_filters( 'woo_ca_plugin_review_url', 'https://wordpress.org/support/plugin/woo-cart-abandonment-recovery/reviews/?filter=5#new-post' );
+
 
 		Astra_Notices::add_notice(
 			array(
@@ -87,7 +89,7 @@ class Cartflows_Ca_Admin_Notices {
 					$image_path,
 					__( 'Hello! Seems like you have used WooCommerce Cart Abandonment Recovery plugin to recover abandoned carts. &mdash; Thanks a ton!', 'woo-cart-abandonment-recovery' ),
 					__( 'Could you please do us a BIG favor and give it a 5-star rating on WordPress? This would boost our motivation and help other users make a comfortable decision while choosing the CartFlows cart abandonment plugin.', 'woo-cart-abandonment-recovery' ),
-					'https://wordpress.org/support/plugin/woo-cart-abandonment-recovery/reviews/?filter=5#new-post',
+					$review_url,
 					__( 'Ok, you deserve it', 'woo-cart-abandonment-recovery' ),
 					MONTH_IN_SECONDS,
 					__( 'Nope, maybe later', 'woo-cart-abandonment-recovery' ),

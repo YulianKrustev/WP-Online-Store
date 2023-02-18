@@ -3,7 +3,7 @@ Contributors: sujaypawar, wpcrafter
 Tags: woocommerce, cart abandonment, cart recovery
 Requires at least: 5.4
 Tested up to: 6.1
-Stable tag: 1.2.21
+Stable tag: 1.2.22
 Requires PHP: 7.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -127,6 +127,10 @@ Here are few thoughts behind making it available for free:
 4. General settings for Email, Webhook (Coupon Code), GDPR
 
 == Changelog ==
+
+= Version 1.2.22 - Wednesday, 15th February 2023 =
+* New: Added filter `woo_ca_recovery_email_unsubscribe_notice` to change the unsubscribed notice text.
+* Fix: WCAR shortcodes of email editor not showing in some cases.
 
 = Version 1.2.21 - Thursday, 15th December 2022 =
 * Fix: Fixed deprecation notices for PHP 8.1.

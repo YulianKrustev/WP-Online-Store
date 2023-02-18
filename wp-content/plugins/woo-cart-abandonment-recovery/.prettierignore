@@ -1,7 +1,7 @@
 .cache
 vendor
 node_modules
-assets/min-js/
+admin/assets/min-js/
 *.json
 *.yml
 lib/

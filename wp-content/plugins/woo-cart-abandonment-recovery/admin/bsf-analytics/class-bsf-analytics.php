@@ -135,7 +135,6 @@ if ( ! class_exists( 'BSF_Analytics' ) ) {
 				$this->get_api_url() . 'wp-json/bsf-core/v1/analytics/',
 				array(
 					'body'     => BSF_Analytics_Stats::instance()->get_stats(),
-					'timeout'  => 5,
 					'blocking' => false,
 				)
 			);
@@ -306,6 +305,7 @@ if ( ! class_exists( 'BSF_Analytics' ) ) {
 					)
 				)
 			);
+			exit;
 		}
 
 		/**

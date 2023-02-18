@@ -74,7 +74,10 @@ class Cartflows_Ca_Setting_Functions {
 	 * @return mixed
 	 */
 	public function wcf_filter_mce_plugin( $plugins ) {
-		$plugins['cartflows_ac'] = CARTFLOWS_CA_URL . 'admin/assets/js/admin-mce.js';
+
+		$file_ext = Cartflows_Ca_Helper::get_instance()->get_js_file_ext();
+
+		$plugins['cartflows_ac'] = CARTFLOWS_CA_URL . 'admin/assets/' . $file_ext['folder'] . '/admin-mce.' . $file_ext['file_ext'];
 		return $plugins;
 	}
 
@@ -93,7 +96,8 @@ class Cartflows_Ca_Setting_Functions {
 			$wpdb->delete( $cart_abandonment_table, array( 'session_id' => sanitize_key( $session_id ) ) );
 		}
 
-		setcookie( 'wcf_ca_skip_track_data', 'true', 0, '/' );
+		// Ignoring below rule as it need to replace the already build cookie logic to another logic. Can be update in future scope.
+		setcookie( 'wcf_ca_skip_track_data', 'true', 0, '/' ); //phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.cookies_setcookie
 		wp_send_json_success();
 	}
 

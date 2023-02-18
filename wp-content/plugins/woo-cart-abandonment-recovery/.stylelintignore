@@ -2,7 +2,7 @@
 node_modules
 lib/
 vendor
-assets/min-css/
+admin/assets/min-css/
 *-rtl*
 .github
 bsf-analytics

@@ -27,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			);
 		}
 		?>
-		<a href="<?php echo esc_attr( $back_link ); ?>" class="button button-secondary back-button"><span
+		<a href="<?php echo esc_url( $back_link ); ?>" class="button button-secondary back-button"><span
 					class="dashicons dashicons-arrow-left"></span> <?php esc_html_e( 'Back to Reports', 'woo-cart-abandonment-recovery' ); ?> </a>
 	</div>
 </div>
@@ -69,7 +69,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								</p>
 							</div>
 						</div>
-						<a name="<?php esc_html_e( 'Do you really want to reschedule emails?', 'woo-cart-abandonment-recovery' ); ?>" href="#TB_inline?&width=500&height=200&inlineId=wcf-ca-confirm-email-reschedule" class="thickbox button button-secondary"> <?php esc_html_e( 'Reschedule Emails', 'woo-cart-abandonment-recovery' ); ?> </a>
+						<a name="<?php esc_attr_e( 'Do you really want to reschedule emails?', 'woo-cart-abandonment-recovery' ); ?>" href="#TB_inline?&width=500&height=200&inlineId=wcf-ca-confirm-email-reschedule" class="thickbox button button-secondary"> <?php esc_html_e( 'Reschedule Emails', 'woo-cart-abandonment-recovery' ); ?> </a>
 					<?php endif; ?>
 				</div>
 			</div>
@@ -138,14 +138,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<tr class="wcf-ca-report-table-row">
 							<td class="wcf-ca-report-table-row"><a
 										href="<?php echo esc_url( $email_tmpl_url ); ?>"
-										class="wp-ui-text-highlight"> <?php echo esc_attr( $scheduled_email->template_name ); ?> </a>
+										class="wp-ui-text-highlight"> <?php echo esc_html( $scheduled_email->template_name ); ?> </a>
 							</td>
-							<td class="wcf-ca-report-table-row"> <?php echo esc_attr( $scheduled_email->email_subject ); ?> </td>
-							<td class="wcf-ca-report-table-row"> <?php echo esc_attr( $scheduled_email->coupon_code ? $scheduled_email->coupon_code : '--' ); ?> </td>
-							<td class="wcf-ca-report-table-row wcf-ca-icon-row"> <?php echo( $icon ); //phpcs:ignore ?> 
-								<span class="wcf-ca-tooltip-text"><?php echo esc_attr( $title_text ); ?></span>
+							<td class="wcf-ca-report-table-row"> <?php echo esc_html( $scheduled_email->email_subject ); ?> </td>
+							<td class="wcf-ca-report-table-row"> <?php echo esc_html( $scheduled_email->coupon_code ? $scheduled_email->coupon_code : '--' ); ?> </td>
+							<td class="wcf-ca-report-table-row wcf-ca-icon-row"> <?php echo( $icon ); //phpcs:ignore ?>
+								<span class="wcf-ca-tooltip-text"><?php echo esc_html( $title_text ); ?></span>
 							</td>
-							<td class="wcf-ca-report-table-row"> <?php echo esc_attr( $scheduled_time ); ?> </td>
+							<td class="wcf-ca-report-table-row"> <?php echo esc_html( $scheduled_time ); ?> </td>
 						</tr>
 					<?php endforeach; ?>
 					</tbody>
@@ -167,61 +167,61 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<span class="wcf-ca-tag"> <?php esc_html_e( 'Unsubscribed', 'woo-cart-abandonment-recovery' ); ?> </span>
 					<?php endif; ?>
 
-					<span class="wcf-ca-tag"> <?php echo esc_attr( ucfirst( $details->order_status ) ); ?> </span>
+					<span class="wcf-ca-tag"> <?php echo esc_html( ucfirst( $details->order_status ) ); ?> </span>
 				</div>
 			</div>
 
 			<div class="wcf-ca-user-address wcf-pull-left">
 				<h3> <?php esc_html_e( 'Billing Address', 'woo-cart-abandonment-recovery' ); ?> </h3>
 				<p><strong> <?php esc_html_e( 'Name', 'woo-cart-abandonment-recovery' ); ?> </strong>
-					<?php echo esc_attr( $user_details->wcf_first_name . ' ' . $user_details->wcf_last_name ); ?> </p>
+					<?php echo esc_html( $user_details->wcf_first_name . ' ' . $user_details->wcf_last_name ); ?> </p>
 				<p>
 					<strong> <?php esc_html_e( 'Email address', 'woo-cart-abandonment-recovery' ); ?> </strong>
-					<a href="mailto:<?php echo esc_attr( $details->email ); ?>"><?php echo esc_attr( $details->email ); ?></a>
+					<a href="mailto:<?php echo esc_attr( $details->email ); ?>"><?php echo esc_html( $details->email ); ?></a>
 				</p>
 
 				<p>
 					<strong> <?php esc_html_e( 'Phone', 'woo-cart-abandonment-recovery' ); ?> </strong>
-					<a href="tel:<?php echo esc_attr( $user_details->wcf_phone_number ); ?>"><?php echo esc_attr( $user_details->wcf_phone_number ); ?></a>
+					<a href="tel:<?php echo esc_attr( $user_details->wcf_phone_number ); ?>"><?php echo esc_html( $user_details->wcf_phone_number ); ?></a>
 				</p>
 
 				<p>
-					<strong> <?php esc_html_e( 'Address 1:', 'woo-cart-abandonment-recovery' ); ?> </strong> <?php echo esc_attr( $user_details->wcf_billing_address_1 ); ?>
+					<strong> <?php esc_html_e( 'Address 1:', 'woo-cart-abandonment-recovery' ); ?> </strong> <?php echo esc_html( $user_details->wcf_billing_address_1 ); ?>
 				</p>
 				<p>
-					<strong> <?php esc_html_e( 'Address 2:', 'woo-cart-abandonment-recovery' ); ?> </strong> <?php echo esc_attr( $user_details->wcf_billing_address_2 ); ?>
+					<strong> <?php esc_html_e( 'Address 2:', 'woo-cart-abandonment-recovery' ); ?> </strong> <?php echo esc_html( $user_details->wcf_billing_address_2 ); ?>
 				</p>
 				<p>
-					<strong> <?php esc_html_e( 'Country, City:', 'woo-cart-abandonment-recovery' ); ?> </strong> <?php echo esc_attr( $user_details->wcf_location ); ?>
+					<strong> <?php esc_html_e( 'Country, City:', 'woo-cart-abandonment-recovery' ); ?> </strong> <?php echo esc_html( $user_details->wcf_location ); ?>
 				</p>
 				<p>
-					<strong> <?php esc_html_e( 'State:', 'woo-cart-abandonment-recovery' ); ?> </strong> <?php echo esc_attr( $user_details->wcf_billing_state ); ?>
+					<strong> <?php esc_html_e( 'State:', 'woo-cart-abandonment-recovery' ); ?> </strong> <?php echo esc_html( $user_details->wcf_billing_state ); ?>
 				</p>
 
 				<p>
-					<strong> <?php esc_html_e( 'Postcode:', 'woo-cart-abandonment-recovery' ); ?> </strong> <?php echo esc_attr( $user_details->wcf_billing_postcode ); ?>
+					<strong> <?php esc_html_e( 'Postcode:', 'woo-cart-abandonment-recovery' ); ?> </strong> <?php echo esc_html( $user_details->wcf_billing_postcode ); ?>
 				</p>
 			</div>
 
 			<div class="wcf-ca-user-address wcf-pull-left">
 				<h3> <?php esc_html_e( 'Shipping Address', 'woo-cart-abandonment-recovery' ); ?> </h3>
 				<p>
-					<strong> <?php esc_html_e( 'Address 1:', 'woo-cart-abandonment-recovery' ); ?> </strong> <?php echo esc_attr( $user_details->wcf_shipping_address_1 ); ?>
+					<strong> <?php esc_html_e( 'Address 1:', 'woo-cart-abandonment-recovery' ); ?> </strong> <?php echo esc_html( $user_details->wcf_shipping_address_1 ); ?>
 				</p>
 				<p>
-					<strong> <?php esc_html_e( 'Address 2:', 'woo-cart-abandonment-recovery' ); ?> </strong> <?php echo esc_attr( $user_details->wcf_shipping_address_2 ); ?>
+					<strong> <?php esc_html_e( 'Address 2:', 'woo-cart-abandonment-recovery' ); ?> </strong> <?php echo esc_html( $user_details->wcf_shipping_address_2 ); ?>
 				</p>
 				<p>
-					<strong> <?php esc_html_e( 'City:', 'woo-cart-abandonment-recovery' ); ?> </strong> <?php echo esc_attr( $user_details->wcf_shipping_city ); ?>
+					<strong> <?php esc_html_e( 'City:', 'woo-cart-abandonment-recovery' ); ?> </strong> <?php echo esc_html( $user_details->wcf_shipping_city ); ?>
 				</p>
 				<p>
-					<strong> <?php esc_html_e( 'State:', 'woo-cart-abandonment-recovery' ); ?> </strong> <?php echo esc_attr( $user_details->wcf_shipping_state ); ?>
+					<strong> <?php esc_html_e( 'State:', 'woo-cart-abandonment-recovery' ); ?> </strong> <?php echo esc_html( $user_details->wcf_shipping_state ); ?>
 				</p>
 				<p>
-					<strong> <?php esc_html_e( 'Country:', 'woo-cart-abandonment-recovery' ); ?> </strong> <?php echo esc_attr( $user_details->wcf_shipping_country ); ?>
+					<strong> <?php esc_html_e( 'Country:', 'woo-cart-abandonment-recovery' ); ?> </strong> <?php echo esc_html( $user_details->wcf_shipping_country ); ?>
 				</p>
 				<p>
-					<strong> <?php esc_html_e( 'Postcode:', 'woo-cart-abandonment-recovery' ); ?> </strong> <?php echo esc_attr( $user_details->wcf_shipping_postcode ); ?>
+					<strong> <?php esc_html_e( 'Postcode:', 'woo-cart-abandonment-recovery' ); ?> </strong> <?php echo esc_html( $user_details->wcf_shipping_postcode ); ?>
 				</p>
 				<p>
 					<?php

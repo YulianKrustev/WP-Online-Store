@@ -226,6 +226,19 @@ class Cartflows_Ca_Helper {
 		return $sanitized_value;
 	}
 
+	/**
+	 * Conditional file extentions.
+	 *
+	 * @return array
+	 */
+	public function get_js_file_ext() {
+
+		return array(
+			'folder'   => SCRIPT_DEBUG ? 'js' : 'min-js',
+			'file_ext' => SCRIPT_DEBUG ? 'js' : 'min.js',
+		);
+	}
+
 }
 
 Cartflows_Ca_Helper::get_instance();

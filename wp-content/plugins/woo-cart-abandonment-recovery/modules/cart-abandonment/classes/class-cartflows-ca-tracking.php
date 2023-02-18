@@ -58,8 +58,8 @@ class Cartflows_Ca_Tracking {
 			add_action( 'woocommerce_order_status_changed', array( $this, 'wcf_ca_update_order_status' ), 999, 3 );
 
 			// Adding filter to restore the data if recreating abandonment order.
-			add_filter( 'wp', array( $this, 'restore_cart_abandonment_data' ), 10 );
-			add_filter( 'wp', array( $this, 'unsubscribe_cart_abandonment_emails' ), 10 );
+			add_action( 'wp', array( $this, 'restore_cart_abandonment_data' ), 10 );
+			add_action( 'wp', array( $this, 'unsubscribe_cart_abandonment_emails' ), 10 );
 
 			// Adding notice to checkout page to inform about test email checkout page.
 			add_action( 'woocommerce_before_checkout_form', array( $this, 'test_email_checkout_page' ), 9 );
@@ -248,20 +248,21 @@ class Cartflows_Ca_Tracking {
 					array( 'unsubscribed' => true ),
 					array( 'session_id' => $session_id )
 				);
-				wp_die( esc_html__( 'You have successfully unsubscribed from our email list.', 'woo-cart-abandonment-recovery' ), esc_html__( 'Unsubscribed', 'woo-cart-abandonment-recovery' ) );
 
+				$unsubscribe_notice = apply_filters(
+					'woo_ca_recovery_email_unsubscribe_notice',
+					__( 'You have successfully unsubscribed from our email list.', 'woo-cart-abandonment-recovery' )
+				);
+
+				wp_die( esc_html( $unsubscribe_notice ), esc_html__( 'Unsubscribed', 'woo-cart-abandonment-recovery' ) );
 			}
 		}
-
 	}
 
 	/**
 	 * Restore cart abandonemnt data on checkout page.
-	 *
-	 * @param  array $fields checkout fields values.
-	 * @return array field values
 	 */
-	public function restore_cart_abandonment_data( $fields = array() ) {
+	public function restore_cart_abandonment_data() {
 		global $woocommerce;
 		$result = array();
 		// Restore only of user is not logged in.
@@ -335,7 +336,6 @@ class Cartflows_Ca_Tracking {
 
 			}
 		}
-		return $fields;
 	}
 
 	/**
@@ -547,7 +547,6 @@ class Cartflows_Ca_Tracking {
 				$url,
 				array(
 					'body'        => $parameters,
-					'timeout'     => '5',
 					'redirection' => '5',
 					'httpversion' => '1.0',
 					'blocking'    => true,
@@ -976,9 +975,11 @@ class Cartflows_Ca_Tracking {
 		$admin_notice = Cartflows_Ca_Admin_Notices::get_instance();
 		if ( $admin_notice->allowed_screen_for_notices() ) {
 
+			$file_ext = Cartflows_Ca_Helper::get_instance()->get_js_file_ext();
+
 			wp_enqueue_script(
 				'cartflows-cart-abandonment-admin-notices',
-				CARTFLOWS_CA_URL . 'admin/assets/js/admin-notices.js',
+				CARTFLOWS_CA_URL . 'admin/assets/' . $file_ext['folder'] . '/admin-notices.' . $file_ext['file_ext'],
 				array( 'jquery' ),
 				CARTFLOWS_CA_VER,
 				false
@@ -999,11 +1000,16 @@ class Cartflows_Ca_Tracking {
 		}
 
 		// Styles.
-		wp_enqueue_style( 'cartflows-cart-abandonment-admin', CARTFLOWS_CA_URL . 'admin/assets/css/admin-cart-abandonment.css', array(), CARTFLOWS_CA_VER );
+		$folder   = SCRIPT_DEBUG ? 'css' : 'min-css';
+		$file_rtl = ( is_rtl() ) ? '-rtl' : '';
+		$file_ext = SCRIPT_DEBUG ? '.css' : '.min.css';
+		wp_enqueue_style( 'cartflows-cart-abandonment-admin', CARTFLOWS_CA_URL . 'admin/assets/' . $folder . '/admin-cart-abandonment' . $file_rtl . $file_ext, array(), CARTFLOWS_CA_VER );
+
+		$file_ext = Cartflows_Ca_Helper::get_instance()->get_js_file_ext();
 
 		wp_enqueue_script(
 			'cartflows-cart-abandonment-admin',
-			CARTFLOWS_CA_URL . 'admin/assets/js/admin-settings.js',
+			CARTFLOWS_CA_URL . 'admin/assets/' . $file_ext['folder'] . '/admin-settings.' . $file_ext['file_ext'],
 			array( 'jquery' ),
 			CARTFLOWS_CA_VER,
 			false

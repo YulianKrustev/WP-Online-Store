@@ -92,7 +92,8 @@ class Cartflows_Ca_Admin_Report_Emails {
 					$user_name = $user_info ? $user_info->display_name : __( 'There', 'woo-cart-abandonment-recovery' );
 
 					$email_body = $this->get_email_content( $report_details, $user_name, $admin_email );
-					wp_mail( $admin_email, $subject, stripslashes( $email_body ), $headers );
+					// Ignoring the below rule as rule asking to use third party mailing functions but third-party SMTP plugins overrides the wp_mail and uses their mailing system.
+					wp_mail( $admin_email, $subject, stripslashes( $email_body ), $headers ); //phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.wp_mail_wp_mail
 				}
 			}
 		}

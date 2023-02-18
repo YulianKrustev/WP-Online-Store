@@ -64,8 +64,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				$redirect_url = add_query_arg( $param, admin_url( '/admin.php' ) );
 
 				wp_safe_redirect( $redirect_url );
-
-				break;
+				exit;
 			default:
 				$this->wcf_display_reports();
 				break;

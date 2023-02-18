@@ -100,9 +100,11 @@ class Cartflows_Ca_Email_Templates {
 		wp_enqueue_script( 'jquery-ui-datepicker' );
 		wp_enqueue_style( 'jquery-ui-style' );
 
+		$file_ext = Cartflows_Ca_Helper::get_instance()->get_js_file_ext();
+
 		wp_enqueue_script(
 			'cartflows-ca-email-tmpl-settings',
-			CARTFLOWS_CA_URL . 'admin/assets/js/admin-email-templates.js',
+			CARTFLOWS_CA_URL . 'admin/assets/' . $file_ext['folder'] . '/admin-email-templates.' . $file_ext['file_ext'],
 			array( 'jquery' ),
 			CARTFLOWS_CA_VER,
 			false
@@ -300,6 +302,7 @@ class Cartflows_Ca_Email_Templates {
 		);
 		$redirect_url = add_query_arg( $param, admin_url( '/admin.php' ) );
 		wp_safe_redirect( $redirect_url );
+		exit;
 	}
 
 
@@ -325,7 +328,7 @@ class Cartflows_Ca_Email_Templates {
 			);
 			$redirect_url = add_query_arg( $param, admin_url( '/admin.php' ) );
 			wp_safe_redirect( $redirect_url );
-
+			exit;
 		}
 	}
 
@@ -375,7 +378,7 @@ class Cartflows_Ca_Email_Templates {
 			);
 			$redirect_url = add_query_arg( $param, admin_url( '/admin.php' ) );
 			wp_safe_redirect( $redirect_url );
-
+			exit;
 		}
 	}
 
@@ -414,10 +417,10 @@ class Cartflows_Ca_Email_Templates {
 				'action'     => WCF_ACTION_EMAIL_TEMPLATES,
 				'sub_action' => WCF_SUB_ACTION_SAVE_EMAIL_TEMPLATES,
 			);
-			$save_template_url = esc_url( add_query_arg( $param, admin_url( '/admin.php' ) ) );
+			$save_template_url = add_query_arg( $param, admin_url( '/admin.php' ) );
 			?>
 
-			<form method="post" action="<?php echo esc_attr( $save_template_url ); ?>" id="wcf_settings">
+			<form method="post" action="<?php echo esc_url( $save_template_url ); ?>" id="wcf_settings">
 				<input type="hidden" name="sub_action" value="<?php echo esc_attr( $sub_action ); ?>"/>
 				<?php
 				$id_by = '';
@@ -456,7 +459,7 @@ class Cartflows_Ca_Email_Templates {
 											$is_activated  = $active_status ? 'on' : 'off';
 
 										}
-										print '<button type="button" class="wcf-ca-switch wcf-toggle-template-status" wcf-template-id="1" wcf-ca-template-switch="' . esc_attr( $is_activated ) . '"> ' . esc_attr( $is_activated ) . ' </button>';
+										print '<button type="button" class="wcf-ca-switch wcf-toggle-template-status" wcf-template-id="1" wcf-ca-template-switch="' . esc_attr( $is_activated ) . '"> ' . esc_html( $is_activated ) . ' </button>';
 										print '<input type="hidden" name="wcf_activate_email_template" id="wcf_activate_email_template" value="' . esc_attr( $active_status ) . '" />';
 										?>
 
@@ -586,7 +589,7 @@ class Cartflows_Ca_Email_Templates {
 										echo '<select id="wcf_email_discount_type" name="wcf_email_discount_type">';
 										foreach ( $dropdown_options as $key => $value ) {
 											$is_selected = $key === $wcf_email_discount_type ? 'selected' : '';
-											echo '<option ' . esc_attr( $is_selected ) . ' value=' . esc_attr( $key ) . '>' . esc_attr( $value ) . '</option>';
+											echo '<option ' . esc_html( $is_selected ) . ' value=' . esc_attr( $key ) . '>' . esc_html( $value ) . '</option>';
 
 										}
 										echo '</select>';
@@ -913,7 +916,7 @@ class Cartflows_Ca_Email_Templates {
 		);
 		$redirect_url = add_query_arg( $param, admin_url( '/admin.php' ) );
 		wp_safe_redirect( $redirect_url );
-
+		exit;
 	}
 
 	/**
@@ -964,7 +967,7 @@ class Cartflows_Ca_Email_Templates {
 		$redirect_url = add_query_arg( $param, admin_url( '/admin.php' ) );
 
 		wp_safe_redirect( $redirect_url );
-
+		exit;
 	}
 
 	/**
@@ -987,6 +990,7 @@ class Cartflows_Ca_Email_Templates {
 			);
 			$redirect_url = add_query_arg( $param, admin_url( '/admin.php' ) );
 			wp_safe_redirect( $redirect_url );
+			exit;
 		}
 
 	}
@@ -1060,9 +1064,9 @@ class Cartflows_Ca_Email_Templates {
 		?>
 		<div class="wrap">
 			<form id="wcf-cart-abandonment-template-table" method="GET">
-				<input type="hidden" name="page" value="<?php echo esc_html( $page ); ?>"/>
-				<input type="hidden" name="action" value="<?php echo esc_html( WCF_ACTION_EMAIL_TEMPLATES ); ?>"/>
-				<input type="hidden" name="sub_action" value="<?php echo esc_html( WCF_SUB_ACTION_DELETE_BULK_EMAIL_TEMPLATES ); ?>"/>
+				<input type="hidden" name="page" value="<?php echo esc_attr( $page ); ?>"/>
+				<input type="hidden" name="action" value="<?php echo esc_attr( WCF_ACTION_EMAIL_TEMPLATES ); ?>"/>
+				<input type="hidden" name="sub_action" value="<?php echo esc_attr( WCF_SUB_ACTION_DELETE_BULK_EMAIL_TEMPLATES ); ?>"/>
 				<?php $wcf_template_list->display(); ?>
 			</form>
 		</div>

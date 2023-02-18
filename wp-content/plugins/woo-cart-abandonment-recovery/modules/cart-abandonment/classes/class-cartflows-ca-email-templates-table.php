@@ -229,7 +229,7 @@ class Cartflows_Ca_Email_Templates_Table extends WP_List_Table {
 			$is_activated  = $active_status ? 'on' : 'off';
 
 		}
-		print '<button type="button" id="' . esc_attr( $id ) . '" class="wcf-ca-switch wcf-toggle-template-status wcar-switch-grid"  wcf-ca-template-switch="' . esc_attr( $is_activated ) . '"> ' . esc_attr( $is_activated ) . ' </button>';
+		print '<button type="button" id="' . esc_attr( $id ) . '" class="wcf-ca-switch wcf-toggle-template-status wcar-switch-grid"  wcf-ca-template-switch="' . esc_attr( $is_activated ) . '"> ' . esc_html( $is_activated ) . ' </button>';
 		print '<input type="hidden" name="wcf_activate_email_template" id="wcf_activate_email_template" value="' . esc_attr( $active_status ) . '" />';
 	}
 

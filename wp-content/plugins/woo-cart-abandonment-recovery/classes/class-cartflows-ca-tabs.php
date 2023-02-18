@@ -85,6 +85,7 @@ class Cartflows_Ca_Tabs {
 			set_transient( 'wcf_ca_show_message', $message, 5 );
 			if ( isset( $_SERVER['HTTP_REFERER'] ) ) {
 				wp_safe_redirect( esc_url_raw( wp_unslash( $_SERVER['HTTP_REFERER'] ) ) );
+				exit;
 			}
 		} elseif ( 'unsubscribe' === $wcf_list_table->current_action() ) {
 
@@ -102,6 +103,7 @@ class Cartflows_Ca_Tabs {
 			set_transient( 'wcf_ca_show_message', $message, 5 );
 			if ( isset( $_SERVER['HTTP_REFERER'] ) ) {
 				wp_safe_redirect( esc_url_raw( wp_unslash( $_SERVER['HTTP_REFERER'] ) ) );
+				exit;
 			}
 		}
 		?>
@@ -326,7 +328,8 @@ class Cartflows_Ca_Tabs {
 		ob_clean();
 		ob_start();
 		$data_file = fopen( 'php://output', 'w' );
-		fputcsv(
+		// Ignoring below rule as we are not working on wp directory and do not require path.
+		fputcsv( //phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_fputcsv
 			$data_file,
 			array(
 				'First-Name',
@@ -345,7 +348,7 @@ class Cartflows_Ca_Tabs {
 			$name             = unserialize( $data['other_fields'] );
 			$checkout_details = Cartflows_Ca_Helper::get_instance()->get_checkout_details( $data['session_id'] );
 			$cart_data        = Cartflows_Ca_Helper::get_instance()->get_comma_separated_products( $checkout_details->cart_contents );
-			fputcsv(
+			fputcsv( //phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_fputcsv
 				$data_file,
 				array(
 					$name['wcf_first_name'],

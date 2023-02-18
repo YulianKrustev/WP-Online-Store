@@ -176,6 +176,9 @@ class Cartflows_Ca_Email_Schedule {
 				return true;
 			}
 
+			// Ignoring the below rule as rule asking to use third party mailing functions but third-party SMTP plugins overrides the wp_mail and uses their mailing system.
+			//phpcs:disable WordPressVIPMinimum.Functions.RestrictedFunctions.wp_mail_wp_mail
+
 			$mail_result = wp_mail( $email_data->email, $subject_email_preview, stripslashes( $body_email_preview ), $headers );
 			if ( $mail_result ) {
 				return true;
@@ -187,6 +190,7 @@ class Cartflows_Ca_Email_Schedule {
 				}
 				return false;
 			}
+			//phpcs:enable WordPressVIPMinimum.Functions.RestrictedFunctions.wp_mail_wp_mail
 		} else {
 			return false;
 		}
